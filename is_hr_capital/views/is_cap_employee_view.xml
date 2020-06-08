@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_hr_employee_search_inherit" model="ir.ui.view">
+		<field name="name">hr.employee.form.inherit</field>
+		<field name="model">hr.employee</field>
+		<field name="inherit_id" ref="hr.view_employee_filter"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='name']" position="replace">
+				<field name="name" string="Employees" filter_domain="['|',('name','ilike',self),('code','ilike',self)]"/>
+			</xpath>
+		</field>
+	</record>
+
+
+	<record id="view_employee_form_inherit" model="ir.ui.view">
+		<field name="name">hr.employee.form.inherit</field>
+		<field name="model">hr.employee</field>
+		<field name="inherit_id" ref="hr.view_employee_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//div[@class='oe_title']" position="after">
+				<div class="oe_title">
+					<h1>
+						<field name="code" placeholder="Employee Code"/>
+					</h1>
+				</div>
+			</xpath>
+			<xpath expr="//field[@name='user_id']" position="after">
+				<field name="hiring_date" required="1"/>
+			</xpath>
+			<xpath expr="//field[@name='birthday']" position="after">
+				<field name="age"/>
+			</xpath>
+
+		</field>
+	</record>
+
+</odoo>
